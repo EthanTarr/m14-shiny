@@ -1,5 +1,5 @@
 ### Exercise 2 ###
-
+#install.packages("shiny")
 library(shiny)
 
 # We'll look into these more next week: http://shiny.rstudio.com/gallery/widget-gallery.html 
@@ -10,5 +10,9 @@ library(shiny)
 # It should return a rendered plot
 shinyServer(function(input, output) {
   # Save a 'scatter' property which is a renderPlot object (that renders a scatterplot)
-  
+  output$scatter <- renderPlot({
+    x <- rnorm(input$num)
+    y <- rnorm(input$num)
+    return(plot(x,y, col = input$color))
+  })
 })
